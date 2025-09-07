@@ -25,7 +25,9 @@ namespace QuanLyNhanVien2
 
         private void chiTietDuAnToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            ChiTietDuAn CTDA = new ChiTietDuAn();
+            CTDA.MdiParent = this;
+            CTDA.Show();
         }
 
         private void nhanVienToolStripMenuItem_Click(object sender, EventArgs e)
@@ -33,6 +35,60 @@ namespace QuanLyNhanVien2
             NhanVien NV = new NhanVien();
             NV.MdiParent = this;
             NV.Show();
+        }
+
+        private void thongTinDuAnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ThongTinDuAnToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DuAn DA = new DuAn();
+            DA.MdiParent = this;
+            DA.Show();
+        }
+
+        private void phongBanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PhongBan PB = new PhongBan();
+            PB.MdiParent = this;
+            PB.Show();
+        }
+
+        private void chucVuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChucVu CV = new ChucVu();
+            CV.MdiParent = this;
+            CV.Show();
+        }
+
+        private void taiKhoanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HopDong HD = new HopDong();
+            HD.MdiParent = this;
+            HD.Show();
+        }
+
+        private void longToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TaiKhoan TK = new TaiKhoan();
+            TK.MdiParent = this;
+            TK.Show();
+        }
+
+        private void luongToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Luong L = new Luong();
+            L.MdiParent = this;
+            L.Show();
+        }
+
+        private void chamConngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChamCong CC = new ChamCong();
+            CC.MdiParent = this;
+            CC.Show();
         }
     }
 }

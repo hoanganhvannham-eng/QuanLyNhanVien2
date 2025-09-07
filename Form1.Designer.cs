@@ -66,14 +66,16 @@
             this.ThongTinDuAnToolStripMenuItem1,
             this.chiTietDuAnToolStripMenuItem1});
             this.thongTinDuAnToolStripMenuItem.Name = "thongTinDuAnToolStripMenuItem";
-            this.thongTinDuAnToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.thongTinDuAnToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
             this.thongTinDuAnToolStripMenuItem.Text = "Du An";
+            this.thongTinDuAnToolStripMenuItem.Click += new System.EventHandler(this.thongTinDuAnToolStripMenuItem_Click);
             // 
             // ThongTinDuAnToolStripMenuItem1
             // 
             this.ThongTinDuAnToolStripMenuItem1.Name = "ThongTinDuAnToolStripMenuItem1";
             this.ThongTinDuAnToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.ThongTinDuAnToolStripMenuItem1.Text = "Thong Tin Du An";
+            this.ThongTinDuAnToolStripMenuItem1.Click += new System.EventHandler(this.ThongTinDuAnToolStripMenuItem1_Click);
             // 
             // chiTietDuAnToolStripMenuItem1
             // 
@@ -87,12 +89,14 @@
             this.phongBanToolStripMenuItem.Name = "phongBanToolStripMenuItem";
             this.phongBanToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
             this.phongBanToolStripMenuItem.Text = "Phong Ban";
+            this.phongBanToolStripMenuItem.Click += new System.EventHandler(this.phongBanToolStripMenuItem_Click);
             // 
             // chucVuToolStripMenuItem
             // 
             this.chucVuToolStripMenuItem.Name = "chucVuToolStripMenuItem";
             this.chucVuToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.chucVuToolStripMenuItem.Text = "Chuc Vu";
+            this.chucVuToolStripMenuItem.Click += new System.EventHandler(this.chucVuToolStripMenuItem_Click);
             // 
             // nhanVienToolStripMenuItem
             // 
@@ -106,24 +110,28 @@
             this.taiKhoanToolStripMenuItem.Name = "taiKhoanToolStripMenuItem";
             this.taiKhoanToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
             this.taiKhoanToolStripMenuItem.Text = "Hop Dong";
+            this.taiKhoanToolStripMenuItem.Click += new System.EventHandler(this.taiKhoanToolStripMenuItem_Click);
             // 
             // longToolStripMenuItem
             // 
             this.longToolStripMenuItem.Name = "longToolStripMenuItem";
             this.longToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
             this.longToolStripMenuItem.Text = "Tai Khoan";
+            this.longToolStripMenuItem.Click += new System.EventHandler(this.longToolStripMenuItem_Click);
             // 
             // luongToolStripMenuItem
             // 
             this.luongToolStripMenuItem.Name = "luongToolStripMenuItem";
             this.luongToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
             this.luongToolStripMenuItem.Text = "Luong";
+            this.luongToolStripMenuItem.Click += new System.EventHandler(this.luongToolStripMenuItem_Click);
             // 
             // chamConngToolStripMenuItem
             // 
             this.chamConngToolStripMenuItem.Name = "chamConngToolStripMenuItem";
             this.chamConngToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
             this.chamConngToolStripMenuItem.Text = "Cham Cong";
+            this.chamConngToolStripMenuItem.Click += new System.EventHandler(this.chamConngToolStripMenuItem_Click);
             // 
             // Form1
             // 
