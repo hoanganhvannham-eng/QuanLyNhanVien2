@@ -16,5 +16,10 @@ namespace QuanLyNhanVien2
         {
             InitializeComponent();
         }
+
+        private void NhanVien_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
