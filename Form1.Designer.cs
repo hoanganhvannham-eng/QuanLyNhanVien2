@@ -30,7 +30,8 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.thongTinDuAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chiTietDuAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ThongTinDuAnToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.chiTietDuAnToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.phongBanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chucVuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,7 +39,6 @@
             this.longToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.luongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chamConngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chiTietDuAnToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,17 +63,24 @@
             // thongTinDuAnToolStripMenuItem
             // 
             this.thongTinDuAnToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.chiTietDuAnToolStripMenuItem,
+            this.ThongTinDuAnToolStripMenuItem1,
             this.chiTietDuAnToolStripMenuItem1});
             this.thongTinDuAnToolStripMenuItem.Name = "thongTinDuAnToolStripMenuItem";
             this.thongTinDuAnToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
             this.thongTinDuAnToolStripMenuItem.Text = "Du An";
             // 
-            // chiTietDuAnToolStripMenuItem
+            // ThongTinDuAnToolStripMenuItem1
             // 
-            this.chiTietDuAnToolStripMenuItem.Name = "chiTietDuAnToolStripMenuItem";
-            this.chiTietDuAnToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.chiTietDuAnToolStripMenuItem.Text = "Thong Tin Du An";
+            this.ThongTinDuAnToolStripMenuItem1.Name = "ThongTinDuAnToolStripMenuItem1";
+            this.ThongTinDuAnToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.ThongTinDuAnToolStripMenuItem1.Text = "Thong Tin Du An";
+            // 
+            // chiTietDuAnToolStripMenuItem1
+            // 
+            this.chiTietDuAnToolStripMenuItem1.Name = "chiTietDuAnToolStripMenuItem1";
+            this.chiTietDuAnToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.chiTietDuAnToolStripMenuItem1.Text = "Chi Tiet Du An";
+            this.chiTietDuAnToolStripMenuItem1.Click += new System.EventHandler(this.chiTietDuAnToolStripMenuItem1_Click);
             // 
             // phongBanToolStripMenuItem
             // 
@@ -92,6 +99,7 @@
             this.nhanVienToolStripMenuItem.Name = "nhanVienToolStripMenuItem";
             this.nhanVienToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
             this.nhanVienToolStripMenuItem.Text = "Nhan Vien";
+            this.nhanVienToolStripMenuItem.Click += new System.EventHandler(this.nhanVienToolStripMenuItem_Click);
             // 
             // taiKhoanToolStripMenuItem
             // 
@@ -117,12 +125,6 @@
             this.chamConngToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
             this.chamConngToolStripMenuItem.Text = "Cham Cong";
             // 
-            // chiTietDuAnToolStripMenuItem1
-            // 
-            this.chiTietDuAnToolStripMenuItem1.Name = "chiTietDuAnToolStripMenuItem1";
-            this.chiTietDuAnToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.chiTietDuAnToolStripMenuItem1.Text = "Chi Tiet Du An";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -146,7 +148,7 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem thongTinDuAnToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem chiTietDuAnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ThongTinDuAnToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem phongBanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chucVuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nhanVienToolStripMenuItem;
