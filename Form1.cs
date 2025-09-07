@@ -21,5 +21,18 @@ namespace QuanLyNhanVien2
         {
 
         }
+
+
+        private void chiTietDuAnToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nhanVienToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NhanVien NV = new NhanVien();
+            NV.MdiParent = this;
+            NV.Show();
+        }
     }
 }
