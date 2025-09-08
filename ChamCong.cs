@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+// hoan tuan anh
 namespace QuanLyNhanVien2
 {
     public partial class ChamCong: Form
