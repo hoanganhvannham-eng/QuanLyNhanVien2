@@ -113,15 +113,15 @@ CREATE TABLE tblTaiKhoan (
 );
 
 -- xóa mềm xóa nhưng vẫn còn dữ liệu thêm một cột để lưu biến (ngay thang năm giờ GETDATE) sau đó updet thay vì xóa rồi truy vẫn với dk khac NULL
-ALTER TABLE tblNhanVien ADD DeletedAt DATETIME NULL;
-ALTER TABLE tblPhongBan ADD DeletedAt DATETIME NULL;
-ALTER TABLE tblChucVu ADD DeletedAt DATETIME NULL;
-ALTER TABLE tblHopDong ADD DeletedAt DATETIME NULL;
-ALTER TABLE tblLuong ADD DeletedAt DATETIME NULL;
-ALTER TABLE tblDuAn ADD DeletedAt DATETIME NULL;
-ALTER TABLE tblChiTietDuAn ADD DeletedAt DATETIME NULL;
-ALTER TABLE tblChamCong ADD DeletedAt DATETIME NULL;
-ALTER TABLE tblTaiKhoan ADD DeletedAt DATETIME NULL;
+ALTER TABLE tblNhanVien ADD DeletedAt int NULL;
+ALTER TABLE tblPhongBan ADD DeletedAt int NULL;
+ALTER TABLE tblChucVu ADD DeletedAt int NULL;
+ALTER TABLE tblHopDong ADD DeletedAt int NULL;
+ALTER TABLE tblLuong ADD DeletedAt int NULL;
+ALTER TABLE tblDuAn ADD DeletedAt int NULL;
+ALTER TABLE tblChiTietDuAn ADD DeletedAt int NULL;
+ALTER TABLE tblChamCong ADD DeletedAt int NULL;
+ALTER TABLE tblTaiKhoan ADD DeletedAt int NULL;
 
 UPDATE NhanVien SET DeletedAt = int() WHERE MaNV = 7;	-- Xóa mềm
 SELECT * FROM NhanVien WHERE DeletedAt = 0;			-- Truy vấn (chỉ lấy bản ghi chưa xóa)
