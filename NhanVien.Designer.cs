@@ -54,6 +54,7 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.dtGridViewNhanVien = new System.Windows.Forms.DataGridView();
             this.cbBoxGioiTinh = new System.Windows.Forms.ComboBox();
+            this.btnNVDaNghiViec = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridViewNhanVien)).BeginInit();
             this.SuspendLayout();
             // 
@@ -310,11 +311,22 @@
             this.cbBoxGioiTinh.Size = new System.Drawing.Size(283, 24);
             this.cbBoxGioiTinh.TabIndex = 28;
             // 
+            // btnNVDaNghiViec
+            // 
+            this.btnNVDaNghiViec.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNVDaNghiViec.Location = new System.Drawing.Point(1222, 332);
+            this.btnNVDaNghiViec.Name = "btnNVDaNghiViec";
+            this.btnNVDaNghiViec.Size = new System.Drawing.Size(252, 33);
+            this.btnNVDaNghiViec.TabIndex = 29;
+            this.btnNVDaNghiViec.Text = "Hien Thi Nhan Vien Da Nghi Viec";
+            this.btnNVDaNghiViec.UseVisualStyleBackColor = true;
+            // 
             // NhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1517, 891);
+            this.Controls.Add(this.btnNVDaNghiViec);
             this.Controls.Add(this.cbBoxGioiTinh);
             this.Controls.Add(this.dtGridViewNhanVien);
             this.Controls.Add(this.btnTimKiem);
@@ -379,5 +391,6 @@
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.DataGridView dtGridViewNhanVien;
         private System.Windows.Forms.ComboBox cbBoxGioiTinh;
+        private System.Windows.Forms.Button btnNVDaNghiViec;
     }
 }
