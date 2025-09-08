@@ -297,6 +297,10 @@
             // cbBoxGioiTinh
             // 
             this.cbBoxGioiTinh.FormattingEnabled = true;
+            this.cbBoxGioiTinh.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ",
+            "Khác"});
             this.cbBoxGioiTinh.Location = new System.Drawing.Point(414, 234);
             this.cbBoxGioiTinh.Name = "cbBoxGioiTinh";
             this.cbBoxGioiTinh.Size = new System.Drawing.Size(283, 24);

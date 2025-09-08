@@ -39,11 +39,9 @@ namespace QuanLyNhanVien2
                 try
                 {
                     conn.Open();
-                    string sql = @"SELECT  MaNV,HoTen,CONVERT(VARCHAR(10), NgaySinh, 103) AS NgaySinh, -- Định dạng dd/MM/yyyy
-                                    GioiTinh, DiaChi  SoDienThoai,  Email, MaPB, MaCV,  GhiChu
+                    string sql = @"SELECT  MaNV,HoTen, NgaySinh, GioiTinh, DiaChi,  SoDienThoai,  Email, MaPB, MaCV,  GhiChu
                                 FROM tblNhanVien
-                                WHERE DeletedAt IS NULL ORDER BY MaNV;
-";
+                                WHERE DeletedAt IS NULL ORDER BY MaNV";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
                     DataTable dt = new DataTable();
@@ -134,59 +132,143 @@ namespace QuanLyNhanVien2
         private void btnXoa_Click(object sender, EventArgs e)
         {
 
+            //    try
+            //    {
+            //        if (string.IsNullOrEmpty(tbmaNV.Text))
+            //        {
+            //            MessageBox.Show("Vui lòng chọn khách hàng cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //            return;
+            //        }
+
+            //        // Xác nhận trước khi xóa
+            //        if (MessageBox.Show("Bạn có muốn xóa dữ liệu?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //        {
+            //            using (SqlConnection conn = new SqlConnection(constr))
+            //            {
+            //                conn.Open();
+            //                string query = "DELETE FROM SanPham WHERE Id=@id";
+            //                SqlCommand cmd = new SqlCommand(query, conn);
+            //                cmd.Parameters.AddWithValue("@id", tbId.Text);
+
+            //                int rowsAffected = cmd.ExecuteNonQuery();
+
+            //                if (rowsAffected > 0)
+            //                    MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //                else
+            //                    MessageBox.Show("Không tìm thấy khách hàng để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            //                LoadDataSanPham();
+            //            }
+            //        }
+            //        ClearAllInputs(this);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Lỗi: " + ex.Message);
+            //    }
             try
             {
+                // 1. Kiểm tra xem đã chọn nhân viên nào chưa
                 if (string.IsNullOrEmpty(tbmaNV.Text))
                 {
-                    MessageBox.Show("Vui lòng chọn khách hàng cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vui lòng chọn hoặc nhập mã nhân viên cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Xác nhận trước khi xóa
-                if (MessageBox.Show("Bạn có muốn xóa dữ liệu?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                // 2. Xác nhận người dùng trước khi xóa
+                DialogResult confirm = MessageBox.Show(
+                    "Bạn có chắc chắn muốn xóa nhân viên này không?",
+                    "Xác nhận xóa",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (confirm == DialogResult.Yes)
                 {
                     using (SqlConnection conn = new SqlConnection(constr))
                     {
                         conn.Open();
-                        string query = "DELETE FROM SanPham WHERE Id=@id";
+
+                        string query = "DELETE FROM tblNhanVien WHERE MaNV = @MaNV";
                         SqlCommand cmd = new SqlCommand(query, conn);
-                        cmd.Parameters.AddWithValue("@id", tbId.Text);
+                        cmd.Parameters.AddWithValue("@MaNV", tbmaNV.Text);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
-                            MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        else
-                            MessageBox.Show("Không tìm thấy khách hàng để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        {
+                            MessageBox.Show("Xóa nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        LoadDataSanPham();
+                            // 3. Load lại danh sách sau khi xóa
+                            LoadDataNhanVien();
+
+                            // 4. Xóa trắng các ô nhập liệu
+                            ClearAllInputs(this);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy nhân viên để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                 }
-                ClearAllInputs(this);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void dtGridViewNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dtGridViewNhanVien.Rows[e.RowIndex];
+            int i = e.RowIndex;
+            //if (e.RowIndex >= 0)
+            //{
+            //    DataGridViewRow row = dtGridViewNhanVien.Rows[e.RowIndex];
 
-                // Lấy dữ liệu từ DataGridView gán vào các TextBox
-                tbmaNV.Text = row.Cells["MaNV"].Value.ToString();
-                tbHoTen.Text = row.Cells["HoTen"].Value.ToString();
-                dateTimePickerNgaySinh.Text = row.Cells["NgaySinh"].Value.ToString(); 
-                cbBoxGioiTinh.SelectedItem = row.Cells["GioiTinh"].Value.ToString();
-                tbDiaChi.Text = row.Cells["DiaChi"].Value.ToString();
-                tbSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
-                tbEmail.Text = row.Cells["Email"].Value.ToString();
-                tbMaPhongBan.Text = row.Cells["MaPB"].Value.ToString();
-                tbMaChucVu.Text = row.Cells["MaCV"].Value.ToString();
-                tbGhiChu.Text = row.Cells["Ghichu"].Value.ToString();
+            //    // Lấy dữ liệu từ DataGridView gán vào các TextBox
+            //    tbmaNV.Text = row.Cells["MaNV"].Value.ToString();
+            //    tbHoTen.Text = row.Cells["HoTen"].Value.ToString();
+            //    //dateTimePickerNgaySinh.Text = row.Cells["NgaySinh"].Value.ToString(); 
+            //    dateTimePickerNgaySinh.Value = Convert.ToDateTime(row.Cells["NgaySinh"].Value);
+            //    //string gioiTinh = row.Cells["GioiTinh"].Value?.ToString().Trim();
+
+            //    //if (!string.IsNullOrEmpty(gioiTinh))
+            //    //{
+            //    //    foreach (var item in cbBoxGioiTinh.Items)
+            //    //    {
+            //    //        if (string.Equals(item.ToString(), gioiTinh, StringComparison.OrdinalIgnoreCase))
+            //    //        {
+            //    //            cbBoxGioiTinh.SelectedItem = item;
+            //    //            break;
+            //    //        }
+            //    //    }
+            //    //}
+            //    //else
+            //    //{
+            //    //    cbBoxGioiTinh.SelectedIndex = -1;
+            //    //}
+
+            //    cbBoxGioiTinh.Text = dtGridViewNhanVien.Rows[i].Cells[3].Value.ToString();
+
+            //    tbDiaChi.Text = row.Cells["DiaChi"].Value.ToString();
+            //    tbSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
+            //    tbEmail.Text = row.Cells["Email"].Value.ToString();
+            //    tbMaPhongBan.Text = row.Cells["MaPB"].Value.ToString();
+            //    tbMaChucVu.Text = row.Cells["MaCV"].Value.ToString();
+            //    tbGhiChu.Text = row.Cells["GhiChu"].Value.ToString();
+            //}
+            if (i >= 0)
+            {
+                tbmaNV.Text = dtGridViewNhanVien.Rows[i].Cells[0].Value.ToString();
+                tbHoTen.Text = dtGridViewNhanVien.Rows[i].Cells[1].Value.ToString();
+                dateTimePickerNgaySinh.Value = Convert.ToDateTime(dtGridViewNhanVien.Rows[i].Cells[2].Value);
+                cbBoxGioiTinh.Text = dtGridViewNhanVien.Rows[i].Cells[3].Value.ToString();
+                tbDiaChi.Text = dtGridViewNhanVien.Rows[i].Cells[4].Value.ToString();
+                tbSoDienThoai.Text = dtGridViewNhanVien.Rows[i].Cells[5].Value.ToString();
+                tbEmail.Text = dtGridViewNhanVien.Rows[i].Cells[6].Value.ToString();
+                tbMaPhongBan.Text = dtGridViewNhanVien.Rows[i].Cells[7].Value.ToString();
+                tbMaChucVu.Text = dtGridViewNhanVien.Rows[i].Cells[8].Value.ToString();
+                tbGhiChu.Text = dtGridViewNhanVien.Rows[i].Cells[9].Value.ToString();
             }
         }
     }
