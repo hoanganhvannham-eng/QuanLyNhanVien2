@@ -174,6 +174,7 @@
             this.tbmaNV.Name = "tbmaNV";
             this.tbmaNV.Size = new System.Drawing.Size(283, 27);
             this.tbmaNV.TabIndex = 12;
+            this.tbmaNV.Text = "Tự Động";
             // 
             // tbHoTen
             // 
@@ -283,6 +284,7 @@
             // 
             // dtGridViewNhanVien
             // 
+            this.dtGridViewNhanVien.AllowUserToAddRows = false;
             this.dtGridViewNhanVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtGridViewNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGridViewNhanVien.Location = new System.Drawing.Point(31, 394);

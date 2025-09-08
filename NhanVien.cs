@@ -131,41 +131,6 @@ namespace QuanLyNhanVien2
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-
-            //    try
-            //    {
-            //        if (string.IsNullOrEmpty(tbmaNV.Text))
-            //        {
-            //            MessageBox.Show("Vui lòng chọn khách hàng cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //            return;
-            //        }
-
-            //        // Xác nhận trước khi xóa
-            //        if (MessageBox.Show("Bạn có muốn xóa dữ liệu?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //        {
-            //            using (SqlConnection conn = new SqlConnection(constr))
-            //            {
-            //                conn.Open();
-            //                string query = "DELETE FROM SanPham WHERE Id=@id";
-            //                SqlCommand cmd = new SqlCommand(query, conn);
-            //                cmd.Parameters.AddWithValue("@id", tbId.Text);
-
-            //                int rowsAffected = cmd.ExecuteNonQuery();
-
-            //                if (rowsAffected > 0)
-            //                    MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //                else
-            //                    MessageBox.Show("Không tìm thấy khách hàng để xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            //                LoadDataSanPham();
-            //            }
-            //        }
-            //        ClearAllInputs(this);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Lỗi: " + ex.Message);
-            //    }
             try
             {
                 // 1. Kiểm tra xem đã chọn nhân viên nào chưa
@@ -221,42 +186,6 @@ namespace QuanLyNhanVien2
         private void dtGridViewNhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int i = e.RowIndex;
-            //if (e.RowIndex >= 0)
-            //{
-            //    DataGridViewRow row = dtGridViewNhanVien.Rows[e.RowIndex];
-
-            //    // Lấy dữ liệu từ DataGridView gán vào các TextBox
-            //    tbmaNV.Text = row.Cells["MaNV"].Value.ToString();
-            //    tbHoTen.Text = row.Cells["HoTen"].Value.ToString();
-            //    //dateTimePickerNgaySinh.Text = row.Cells["NgaySinh"].Value.ToString(); 
-            //    dateTimePickerNgaySinh.Value = Convert.ToDateTime(row.Cells["NgaySinh"].Value);
-            //    //string gioiTinh = row.Cells["GioiTinh"].Value?.ToString().Trim();
-
-            //    //if (!string.IsNullOrEmpty(gioiTinh))
-            //    //{
-            //    //    foreach (var item in cbBoxGioiTinh.Items)
-            //    //    {
-            //    //        if (string.Equals(item.ToString(), gioiTinh, StringComparison.OrdinalIgnoreCase))
-            //    //        {
-            //    //            cbBoxGioiTinh.SelectedItem = item;
-            //    //            break;
-            //    //        }
-            //    //    }
-            //    //}
-            //    //else
-            //    //{
-            //    //    cbBoxGioiTinh.SelectedIndex = -1;
-            //    //}
-
-            //    cbBoxGioiTinh.Text = dtGridViewNhanVien.Rows[i].Cells[3].Value.ToString();
-
-            //    tbDiaChi.Text = row.Cells["DiaChi"].Value.ToString();
-            //    tbSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
-            //    tbEmail.Text = row.Cells["Email"].Value.ToString();
-            //    tbMaPhongBan.Text = row.Cells["MaPB"].Value.ToString();
-            //    tbMaChucVu.Text = row.Cells["MaCV"].Value.ToString();
-            //    tbGhiChu.Text = row.Cells["GhiChu"].Value.ToString();
-            //}
             if (i >= 0)
             {
                 tbmaNV.Text = dtGridViewNhanVien.Rows[i].Cells[0].Value.ToString();
