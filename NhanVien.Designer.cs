@@ -259,6 +259,7 @@
             this.btnXoa.TabIndex = 24;
             this.btnXoa.Text = "Xoa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnTimKiem
             // 
@@ -290,6 +291,7 @@
             this.dtGridViewNhanVien.RowTemplate.Height = 24;
             this.dtGridViewNhanVien.Size = new System.Drawing.Size(1434, 485);
             this.dtGridViewNhanVien.TabIndex = 27;
+            this.dtGridViewNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGridViewNhanVien_CellClick);
             this.dtGridViewNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // cbBoxGioiTinh
