@@ -69,8 +69,8 @@ namespace QuanLyNhanVien2
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            // Kiểm tra dữ liệu nhập vào
-            if (string.IsNullOrWhiteSpace(tbmaNV.Text) ||
+            // Kiểm tra dữ liệu nhập vào    string.IsNullOrWhiteSpace(tbmaNV.Text) ||
+            if (
                 string.IsNullOrWhiteSpace(tbHoTen.Text) ||
                 cbBoxGioiTinh.SelectedIndex == -1 ||
                 string.IsNullOrWhiteSpace(tbDiaChi.Text) ||
@@ -91,13 +91,13 @@ namespace QuanLyNhanVien2
                     conn.Open();
                     // Câu lệnh SQL chèn dữ liệu vào bảng tblNhanVien
                     string sql = @"INSERT INTO tblNhanVien 
-                           (MaNV, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email, MaPB, MaCV, GhiChu, DeletedAt)
-                           VALUES (@MaNV, @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai, @Email, @MaPB, @MaCV, @GhiChu, NULL)";
+                           ( HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email, MaPB, MaCV, GhiChu, DeletedAt)
+                           VALUES ( @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai, @Email, @MaPB, @MaCV, @GhiChu, NULL)";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         // Gán giá trị từ các ô nhập liệu vào tham số SQL
-                        cmd.Parameters.AddWithValue("@MaNV", tbmaNV.Text.Trim());
+                        //cmd.Parameters.AddWithValue("@MaNV", tbmaNV.Text.Trim());
                         cmd.Parameters.AddWithValue("@HoTen", tbHoTen.Text.Trim());
                         cmd.Parameters.AddWithValue("@NgaySinh", dateTimePickerNgaySinh.Value);
                         cmd.Parameters.AddWithValue("@GioiTinh", cbBoxGioiTinh.SelectedItem.ToString());
