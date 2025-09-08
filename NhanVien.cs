@@ -41,7 +41,7 @@ namespace QuanLyNhanVien2
                     conn.Open();
                     string sql = @"SELECT  MaNV,HoTen, NgaySinh, GioiTinh, DiaChi,  SoDienThoai,  Email, MaPB, MaCV,  GhiChu
                                 FROM tblNhanVien
-                                WHERE DeletedAt = 0 ORDER BY MaNV";
+                                WHERE DeletedAt = 0  ORDER BY MaNV"; 
 
                     SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
                     DataTable dt = new DataTable();
@@ -154,7 +154,7 @@ namespace QuanLyNhanVien2
                     using (SqlConnection conn = new SqlConnection(constr))
                     {
                         conn.Open();
-
+                        // DELETE FROM tblNhanVien WHERE MaNV = @MaNV / UPDATE tblNhanVien SET DeletedAt = 1 WHERE MaNV = @MaNV
                         string query = "UPDATE tblNhanVien SET DeletedAt = 1 WHERE MaNV = @MaNV";
                         SqlCommand cmd = new SqlCommand(query, conn);
                         cmd.Parameters.AddWithValue("@MaNV", tbmaNV.Text);
@@ -299,6 +299,82 @@ namespace QuanLyNhanVien2
                 }
             }
             catch (Exception ex)
+            {
+                MessageBox.Show("loi " + ex.Message);
+            }
+        }
+
+        private void btnNVDaNghiViec_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(constr))  
+                {
+                    conn.Open();
+                    string query = @"SELECT  MaNV ,HoTen, NgaySinh, GioiTinh, DiaChi,  SoDienThoai,  Email, MaPB, MaCV,  GhiChu
+                                FROM tblNhanVien
+                                WHERE DeletedAt != 0 ORDER BY MaNV";
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dtGridViewNhanVien.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnKhoiPhucNhanVien_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                // 1. Kiểm tra xem đã chọn nhân viên nào chưa
+                if (string.IsNullOrEmpty(tbmaNV.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn hoặc nhập mã nhân viên cần khôi phục!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2. Xác nhận người dùng trước khi xóa
+                DialogResult confirm = MessageBox.Show(
+                    "Bạn có chắc chắn muốn khôi phục nhân viên này không?",
+                    "Xác nhận khôi phục",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (confirm == DialogResult.Yes)
+                {
+                    using (SqlConnection conn = new SqlConnection(constr))
+                    {
+                        conn.Open();
+                        // DELETE FROM tblNhanVien WHERE MaNV = @MaNV / UPDATE tblNhanVien SET DeletedAt = 1 WHERE MaNV = @MaNV
+                        string query = "UPDATE tblNhanVien SET DeletedAt = 0 WHERE MaNV = @MaNV";
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@MaNV", tbmaNV.Text);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("khôi phục nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // 3. Load lại danh sách sau khi xóa
+                            LoadDataNhanVien();
+
+                            // 4. Xóa trắng các ô nhập liệu
+                            ClearAllInputs(this);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy nhân viên để khôi phục!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            } catch (Exception ex)
             {
                 MessageBox.Show("loi " + ex.Message);
             }

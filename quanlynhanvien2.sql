@@ -3,6 +3,46 @@
 drop database QuanLyNhanVien2;
 USE QuanLyNhanVien2;
 GO
+DELETE FROM tblTaiKhoan WHERE MaNV = 2;
+DELETE FROM tblTaiKhoan WHERE MaNV = 3;
+DELETE FROM tblTaiKhoan WHERE MaNV = 4;
+DELETE FROM tblTaiKhoan WHERE MaNV = 16;
+DELETE FROM tblTaiKhoan WHERE MaNV = 17;
+DELETE FROM tblChamCong WHERE MaNV = 1;
+DELETE FROM tblChamCong WHERE MaNV = 2;
+DELETE FROM tblChamCong WHERE MaNV = 3;
+DELETE FROM tblChamCong WHERE MaNV = 4;
+DELETE FROM tblChamCong WHERE MaNV = 16;
+DELETE FROM tblChamCong WHERE MaNV = 17;
+DELETE FROM tblTaiKhoan WHERE MaNV = 1;
+DELETE FROM tblTaiKhoan WHERE MaNV = 2;
+DELETE FROM tblTaiKhoan WHERE MaNV = 3;
+DELETE FROM tblTaiKhoan WHERE MaNV = 4;
+DELETE FROM tblTaiKhoan WHERE MaNV = 16;
+DELETE FROM tblTaiKhoan WHERE MaNV = 17;
+DELETE FROM tblChiTietDuAn WHERE MaNV = 2;
+DELETE FROM tblChiTietDuAn WHERE MaNV = 3;
+DELETE FROM tblChiTietDuAn WHERE MaNV = 4;
+DELETE FROM tblChiTietDuAn WHERE MaNV = 16;
+DELETE FROM tblChiTietDuAn WHERE MaNV = 17;
+DELETE FROM tblLuong WHERE MaNV = 2;
+DELETE FROM tblLuong WHERE MaNV = 3;
+DELETE FROM tblLuong WHERE MaNV = 4;
+DELETE FROM tblLuong WHERE MaNV = 16;
+DELETE FROM tblLuong WHERE MaNV = 17;
+DELETE FROM tblHopDong WHERE MaNV = 2;
+DELETE FROM tblHopDong WHERE MaNV = 3;
+DELETE FROM tblHopDong WHERE MaNV = 4;
+DELETE FROM tblHopDong WHERE MaNV = 16;
+DELETE FROM tblHopDong WHERE MaNV = 17;
+
+-- Cuối cùng mới xóa nhân viên
+DELETE FROM tblNhanVien WHERE MaNV = 2;
+DELETE FROM tblNhanVien WHERE MaNV = 3;
+DELETE FROM tblNhanVien WHERE MaNV = 4;
+DELETE FROM tblNhanVien WHERE MaNV = 16;
+DELETE FROM tblNhanVien WHERE MaNV = 17;
+
 
 DELETE FROM tblNhanVien
 WHERE MaNV = '1';
