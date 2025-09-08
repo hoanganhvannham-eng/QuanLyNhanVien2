@@ -295,6 +295,10 @@
             // cbBoxGioiTinh
             // 
             this.cbBoxGioiTinh.FormattingEnabled = true;
+            this.cbBoxGioiTinh.Items.AddRange(new object[] {
+            "Nam",
+            "Nu",
+            "Khac"});
             this.cbBoxGioiTinh.Location = new System.Drawing.Point(414, 234);
             this.cbBoxGioiTinh.Name = "cbBoxGioiTinh";
             this.cbBoxGioiTinh.Size = new System.Drawing.Size(283, 24);
@@ -333,7 +337,7 @@
             this.Controls.Add(this.label1);
             this.Name = "NhanVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NhanVien";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.NhanVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtGridViewNhanVien)).EndInit();
             this.ResumeLayout(false);
