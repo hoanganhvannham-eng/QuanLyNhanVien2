@@ -41,7 +41,7 @@ namespace QuanLyNhanVien2
                     conn.Open();
                     string sql = @"SELECT  MaNV,HoTen, NgaySinh, GioiTinh, DiaChi,  SoDienThoai,  Email, MaPB, MaCV,  GhiChu
                                 FROM tblNhanVien
-                                WHERE DeletedAt IS NULL ORDER BY MaNV";
+                                WHERE DeletedAt = 0 ORDER BY MaNV";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
                     DataTable dt = new DataTable();
@@ -67,30 +67,31 @@ namespace QuanLyNhanVien2
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            // Kiểm tra dữ liệu nhập vào    string.IsNullOrWhiteSpace(tbmaNV.Text) ||
-            if (
-                string.IsNullOrWhiteSpace(tbHoTen.Text) ||
-                cbBoxGioiTinh.SelectedIndex == -1 ||
-                string.IsNullOrWhiteSpace(tbDiaChi.Text) ||
-                string.IsNullOrWhiteSpace(tbSoDienThoai.Text) ||
-                string.IsNullOrWhiteSpace(tbEmail.Text) ||
-                string.IsNullOrWhiteSpace(tbMaPhongBan.Text) ||
-                string.IsNullOrWhiteSpace(tbMaChucVu.Text))
-            {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            
 
             try
             {
+                // Kiểm tra dữ liệu nhập vào    string.IsNullOrWhiteSpace(tbmaNV.Text) ||
+                if (
+                    string.IsNullOrWhiteSpace(tbHoTen.Text) ||
+                    cbBoxGioiTinh.SelectedIndex == -1 ||
+                    string.IsNullOrWhiteSpace(tbDiaChi.Text) ||
+                    string.IsNullOrWhiteSpace(tbSoDienThoai.Text) ||
+                    string.IsNullOrWhiteSpace(tbEmail.Text) ||
+                    string.IsNullOrWhiteSpace(tbMaPhongBan.Text) ||
+                    string.IsNullOrWhiteSpace(tbMaChucVu.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 using (SqlConnection conn = new SqlConnection(constr))
                 {
                     conn.Open();
                     // Câu lệnh SQL chèn dữ liệu vào bảng tblNhanVien
                     string sql = @"INSERT INTO tblNhanVien 
                            ( HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email, MaPB, MaCV, GhiChu, DeletedAt)
-                           VALUES ( @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai, @Email, @MaPB, @MaCV, @GhiChu, NULL)";
+                           VALUES ( @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai, @Email, @MaPB, @MaCV, @GhiChu, 0)";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -154,7 +155,7 @@ namespace QuanLyNhanVien2
                     {
                         conn.Open();
 
-                        string query = "DELETE FROM tblNhanVien WHERE MaNV = @MaNV";
+                        string query = "UPDATE tblNhanVien SET DeletedAt = 1 WHERE MaNV = @MaNV";
                         SqlCommand cmd = new SqlCommand(query, conn);
                         cmd.Parameters.AddWithValue("@MaNV", tbmaNV.Text);
 
@@ -198,6 +199,108 @@ namespace QuanLyNhanVien2
                 tbMaPhongBan.Text = dtGridViewNhanVien.Rows[i].Cells[7].Value.ToString();
                 tbMaChucVu.Text = dtGridViewNhanVien.Rows[i].Cells[8].Value.ToString();
                 tbGhiChu.Text = dtGridViewNhanVien.Rows[i].Cells[9].Value.ToString();
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tbmaNV.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn nhân viên cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                // Kiểm tra dữ liệu nhập vào    string.IsNullOrWhiteSpace(tbmaNV.Text) ||
+                if (
+                    string.IsNullOrWhiteSpace(tbHoTen.Text) ||
+                    cbBoxGioiTinh.SelectedIndex == -1 ||
+                    string.IsNullOrWhiteSpace(tbDiaChi.Text) ||
+                    string.IsNullOrWhiteSpace(tbSoDienThoai.Text) ||
+                    string.IsNullOrWhiteSpace(tbEmail.Text) ||
+                    string.IsNullOrWhiteSpace(tbMaPhongBan.Text) ||
+                    string.IsNullOrWhiteSpace(tbMaChucVu.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DialogResult confirm = MessageBox.Show(
+                    "Bạn có chắc chắn muốn sửa nhân viên này không?",
+                    "Xác nhận sửa",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (confirm == DialogResult.Yes)
+                {
+                    using (SqlConnection conn = new SqlConnection(constr))
+                    {
+                    conn.Open();
+                    // Câu lệnh SQL chèn dữ liệu vào bảng tblNhanVien
+                    string sql = @"UPDATE tblNhanVien SET HoTen = @HoTen, NgaySinh = @NgaySinh, GioiTinh = @GioiTinh, DiaChi = @DiaChi, SoDienThoai = @SoDienThoai, 
+                             Email = @Email, MaPB = @MaPB, MaCV = @MaCV, GhiChu= @GhiChu, DeletedAt = 0 WHERE MaNV = @MaNV";
+                        SqlCommand cmd = new SqlCommand(sql, conn);
+                        // Gán giá trị từ các ô nhập liệu vào tham số SQL
+                        cmd.Parameters.AddWithValue("@MaNV", tbmaNV.Text.Trim());
+                        cmd.Parameters.AddWithValue("@HoTen", tbHoTen.Text.Trim());
+                        cmd.Parameters.AddWithValue("@NgaySinh", dateTimePickerNgaySinh.Value);
+                        cmd.Parameters.AddWithValue("@GioiTinh", cbBoxGioiTinh.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@DiaChi", tbDiaChi.Text.Trim());
+                        cmd.Parameters.AddWithValue("@SoDienThoai", tbSoDienThoai.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Email", tbEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@MaPB", tbMaPhongBan.Text.Trim());
+                        cmd.Parameters.AddWithValue("@MaCV", tbMaChucVu.Text.Trim());
+                        cmd.Parameters.AddWithValue("@GhiChu", tbGhiChu.Text.Trim());
+
+                        int rows = cmd.ExecuteNonQuery();
+                        if (rows > 0)
+                        {
+                            MessageBox.Show("Cập nhật thành công!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            LoadDataNhanVien(); 
+                            ClearAllInputs(this);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sửa nhân viên thất bại!", "Lỗi",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("loi" + ex.Message);
+            }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string TenTimKiem = tbHoTen.Text.Trim();  // Lấy nội dung ô tìm kiếm
+                using (SqlConnection conn = new SqlConnection(constr))
+                {
+                    conn.Open();
+                    string sql = @"SELECT MaNV, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email, MaPB, MaCV, GhiChu
+                           FROM tblNhanVien
+                           WHERE DeletedAt = 0 AND HoTen LIKE @TenTimKiem
+                           ORDER BY MaNV";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@TenTimKiem", "%" + TenTimKiem + "%");
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dtGridViewNhanVien.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("loi " + ex.Message);
             }
         }
     }

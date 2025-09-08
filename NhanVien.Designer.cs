@@ -271,6 +271,7 @@
             this.btnTimKiem.TabIndex = 26;
             this.btnTimKiem.Text = "Tim Kiem";
             this.btnTimKiem.UseVisualStyleBackColor = true;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // btnSua
             // 
@@ -281,6 +282,7 @@
             this.btnSua.TabIndex = 25;
             this.btnSua.Text = "Sua";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // dtGridViewNhanVien
             // 

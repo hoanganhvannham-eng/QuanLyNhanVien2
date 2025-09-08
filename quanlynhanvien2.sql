@@ -4,6 +4,9 @@ drop database QuanLyNhanVien2;
 USE QuanLyNhanVien2;
 GO
 
+DELETE FROM tblNhanVien
+WHERE MaNV = '1';
+
 
 -- 1. Bảng Phòng Ban
 CREATE TABLE tblPhongBan (
@@ -120,13 +123,13 @@ ALTER TABLE tblChiTietDuAn ADD DeletedAt DATETIME NULL;
 ALTER TABLE tblChamCong ADD DeletedAt DATETIME NULL;
 ALTER TABLE tblTaiKhoan ADD DeletedAt DATETIME NULL;
 
-UPDATE NhanVien SET DeletedAt = GETDATE() WHERE MaNV = 7;	-- Xóa mềm
-SELECT * FROM NhanVien WHERE DeletedAt IS NULL;			-- Truy vấn (chỉ lấy bản ghi chưa xóa)
-UPDATE TaiKhoan SET DeletedAt = GETDATE() WHERE MaNV = 7;
-SELECT * FROM TaiKhoan WHERE DeletedAt IS NULL;
+UPDATE NhanVien SET DeletedAt = int() WHERE MaNV = 7;	-- Xóa mềm
+SELECT * FROM NhanVien WHERE DeletedAt = 0;			-- Truy vấn (chỉ lấy bản ghi chưa xóa)
+UPDATE TaiKhoan SET DeletedAt = int() WHERE MaNV = 7;
+SELECT * FROM TaiKhoan WHERE DeletedAt = 0;
 
 UPDATE TaiKhoan SET DeletedAt = NULL WHERE MaNV = 7;	-- khôi phục
-SELECT * FROM TaiKhoan WHERE DeletedAt IS NULL;
+SELECT * FROM TaiKhoan WHERE DeletedAt = 0;
 
 INSERT INTO tblPhongBan (TenPB, DiaChi, SoDienThoai, Ghichu)
 VALUES
@@ -142,10 +145,10 @@ VALUES
 
 INSERT INTO tblNhanVien (HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email, MaPB, MaCV, Ghichu, DeletedAt)
 VALUES
-(N'Nguyễn Văn A', '1985-05-20', N'Nam', N'Hà Nội', '0912345678', 'vana@example.com', 1, 1, N'Giám đốc công ty', NULL),
-(N'Trần Thị B', '1990-09-15', N'Nữ', N'Hồ Chí Minh', '0987654321', 'thib@example.com', 2, 2, N'Trưởng phòng kỹ thuật', NULL),
-(N'Lê Văn C', '1995-12-01', N'Nam', N'Đà Nẵng', '0934567890', 'vanc@example.com', 3, 3, N'Nhân viên kinh doanh', NULL),
-(N'Phạm Thị D', '1997-07-07', N'Nữ', N'Hải Phòng', '0978123456', 'thid@example.com', 2, 3, N'Nhân viên kỹ thuật', NULL);
+(N'Nguyễn Văn A', '1985-05-20', N'Nam', N'Hà Nội', '0912345678', 'ana@example.com', 1, 1, N'Giám đốc công ty', 0),
+(N'Trần Thị B', '1990-09-15', N'Nữ', N'Hồ Chí Minh', '0987654321', 'hib@example.com', 2, 2, N'Trưởng phòng kỹ thuật', 0),
+(N'Lê Văn C', '1995-12-01', N'Nam', N'Đà Nẵng', '0934567890', 'vnc@example.com', 3, 3, N'Nhân viên kinh doanh', 0),
+(N'Phạm Thị D', '1997-07-07', N'Nữ', N'Hải Phòng', '0978123456', 'thi@example.com', 2, 3, N'Nhân viên kỹ thuật', 0);
 
 INSERT INTO tblHopDong (MaNV, NgayBatDau, NgayKetThuc, LoaiHopDong, LuongCoBan, Ghichu)
 VALUES
