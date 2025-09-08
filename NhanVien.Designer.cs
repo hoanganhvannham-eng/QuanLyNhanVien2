@@ -282,12 +282,13 @@
             // 
             // dtGridViewNhanVien
             // 
+            this.dtGridViewNhanVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtGridViewNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtGridViewNhanVien.Location = new System.Drawing.Point(156, 394);
+            this.dtGridViewNhanVien.Location = new System.Drawing.Point(31, 394);
             this.dtGridViewNhanVien.Name = "dtGridViewNhanVien";
             this.dtGridViewNhanVien.RowHeadersWidth = 51;
             this.dtGridViewNhanVien.RowTemplate.Height = 24;
-            this.dtGridViewNhanVien.Size = new System.Drawing.Size(1262, 427);
+            this.dtGridViewNhanVien.Size = new System.Drawing.Size(1434, 485);
             this.dtGridViewNhanVien.TabIndex = 27;
             this.dtGridViewNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
