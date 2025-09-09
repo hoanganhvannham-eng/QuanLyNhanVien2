@@ -280,6 +280,11 @@ namespace QuanLyNhanVien2
         {
             try
             {
+                if (string.IsNullOrEmpty(tbHoTen.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập tên nhân viên để tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 string TenTimKiem = tbHoTen.Text.Trim();  // Lấy nội dung ô tìm kiếm
                 using (SqlConnection conn = new SqlConnection(constr))
                 {
