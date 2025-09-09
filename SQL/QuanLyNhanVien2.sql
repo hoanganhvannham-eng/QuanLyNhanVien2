@@ -1,7 +1,4 @@
-﻿-- Xóa database cũ nếu có
-DROP DATABASE IF EXISTS QuanLyNhanVien2;
-GO
-
+﻿
 -- Tạo mới database
 CREATE DATABASE QuanLyNhanVien2;
 GO
@@ -17,10 +14,6 @@ SELECT * FROM tblNhanVien WHERE DeletedAt = 0;
 
 
 
-
-------------------------------------------------------
--- 1. Bảng Phòng Ban
-------------------------------------------------------
 CREATE TABLE tblPhongBan (
     MaPB INT PRIMARY KEY IDENTITY(1,1),
     TenPB NVARCHAR(100) NOT NULL,
@@ -30,9 +23,6 @@ CREATE TABLE tblPhongBan (
     DeletedAt INT NOT NULL -- 0: chưa xóa, 1: đã xóa
 );
 
-------------------------------------------------------
--- 2. Bảng Chức Vụ
-------------------------------------------------------
 CREATE TABLE tblChucVu (
     MaCV INT PRIMARY KEY IDENTITY(1,1),
     TenCV NVARCHAR(100) NOT NULL,
@@ -40,9 +30,6 @@ CREATE TABLE tblChucVu (
     DeletedAt INT NOT NULL
 );
 
-------------------------------------------------------
--- 3. Bảng Nhân Viên
-------------------------------------------------------
 CREATE TABLE tblNhanVien (
     MaNV INT PRIMARY KEY IDENTITY(1,1),
     HoTen NVARCHAR(100) NOT NULL,
@@ -59,9 +46,6 @@ CREATE TABLE tblNhanVien (
     FOREIGN KEY (MaCV) REFERENCES tblChucVu(MaCV)
 );
 
-------------------------------------------------------
--- 4. Bảng Hợp Đồng (1-1 với Nhân viên)
-------------------------------------------------------
 CREATE TABLE tblHopDong (
     MaHopDong INT PRIMARY KEY IDENTITY(1,1),
     MaNV INT UNIQUE NOT NULL,   -- Mỗi nhân viên chỉ có 1 hợp đồng
@@ -74,9 +58,6 @@ CREATE TABLE tblHopDong (
     FOREIGN KEY (MaNV) REFERENCES tblNhanVien(MaNV)
 );
 
-------------------------------------------------------
--- 5. Bảng Lương
-------------------------------------------------------
 CREATE TABLE tblLuong (
     MaLuong INT PRIMARY KEY IDENTITY(1,1),
     MaNV INT NOT NULL,
@@ -92,9 +73,6 @@ CREATE TABLE tblLuong (
     FOREIGN KEY (MaNV) REFERENCES tblNhanVien(MaNV)
 );
 
-------------------------------------------------------
--- 6. Bảng Dự Án
-------------------------------------------------------
 CREATE TABLE tblDuAn (
     MaDA INT PRIMARY KEY IDENTITY(1,1),
     TenDA NVARCHAR(200) NOT NULL,
@@ -105,9 +83,6 @@ CREATE TABLE tblDuAn (
     DeletedAt INT NOT NULL
 );
 
-------------------------------------------------------
--- 7. Bảng Chi Tiết Dự Án (N-N Nhân viên - Dự án)
-------------------------------------------------------
 CREATE TABLE tblChiTietDuAn (
     MaNV INT NOT NULL,
     MaDA INT NOT NULL,
@@ -119,9 +94,6 @@ CREATE TABLE tblChiTietDuAn (
     FOREIGN KEY (MaDA) REFERENCES tblDuAn(MaDA)
 );
 
-------------------------------------------------------
--- 8. Bảng Chấm Công
-------------------------------------------------------
 CREATE TABLE tblChamCong (
     MaChamCong INT PRIMARY KEY IDENTITY(1,1),
     MaNV INT NOT NULL,
@@ -133,9 +105,6 @@ CREATE TABLE tblChamCong (
     FOREIGN KEY (MaNV) REFERENCES tblNhanVien(MaNV)
 );
 
-------------------------------------------------------
--- 9. Bảng Tài Khoản
-------------------------------------------------------
 CREATE TABLE tblTaiKhoan (
     MaTK INT PRIMARY KEY IDENTITY(1,1),
     MaNV INT UNIQUE NOT NULL,
@@ -147,9 +116,6 @@ CREATE TABLE tblTaiKhoan (
     FOREIGN KEY (MaNV) REFERENCES tblNhanVien(MaNV)
 );
 
-------------------------------------------------------
--- Dữ liệu mẫu
-------------------------------------------------------
 
 -- Phòng Ban
 INSERT INTO tblPhongBan (TenPB, DiaChi, SoDienThoai, Ghichu, DeletedAt)
