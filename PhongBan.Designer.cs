@@ -98,6 +98,7 @@
             this.btnSua.TabIndex = 52;
             this.btnSua.Text = "Sua";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
             // 
@@ -108,6 +109,7 @@
             this.btnXoa.TabIndex = 51;
             this.btnXoa.Text = "Xoa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnThem
             // 
@@ -118,6 +120,7 @@
             this.btnThem.TabIndex = 50;
             this.btnThem.Text = "Them";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // tbGhiChu
             // 
@@ -221,6 +224,7 @@
             this.dataGridViewPhongBan.RowTemplate.Height = 24;
             this.dataGridViewPhongBan.Size = new System.Drawing.Size(1045, 355);
             this.dataGridViewPhongBan.TabIndex = 57;
+            this.dataGridViewPhongBan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPhongBan_CellClick);
             // 
             // PhongBan
             // 
