@@ -16,5 +16,11 @@ namespace QuanLyNhanVien2
         {
             InitializeComponent();
         }
+
+        private void PhongBan_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
