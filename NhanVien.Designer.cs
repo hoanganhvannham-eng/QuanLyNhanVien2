@@ -56,6 +56,7 @@
             this.cbBoxGioiTinh = new System.Windows.Forms.ComboBox();
             this.btnNVDaNghiViec = new System.Windows.Forms.Button();
             this.btnKhoiPhucNhanVien = new System.Windows.Forms.Button();
+            this.btnrestar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridViewNhanVien)).BeginInit();
             this.SuspendLayout();
             // 
@@ -334,11 +335,23 @@
             this.btnKhoiPhucNhanVien.UseVisualStyleBackColor = true;
             this.btnKhoiPhucNhanVien.Click += new System.EventHandler(this.btnKhoiPhucNhanVien_Click);
             // 
+            // btnrestar
+            // 
+            this.btnrestar.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnrestar.Location = new System.Drawing.Point(1311, 153);
+            this.btnrestar.Name = "btnrestar";
+            this.btnrestar.Size = new System.Drawing.Size(108, 31);
+            this.btnrestar.TabIndex = 59;
+            this.btnrestar.Text = "Refresh";
+            this.btnrestar.UseVisualStyleBackColor = true;
+            this.btnrestar.Click += new System.EventHandler(this.btnrestar_Click);
+            // 
             // NhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1517, 891);
+            this.Controls.Add(this.btnrestar);
             this.Controls.Add(this.btnKhoiPhucNhanVien);
             this.Controls.Add(this.btnNVDaNghiViec);
             this.Controls.Add(this.cbBoxGioiTinh);
@@ -407,5 +420,6 @@
         private System.Windows.Forms.ComboBox cbBoxGioiTinh;
         private System.Windows.Forms.Button btnNVDaNghiViec;
         private System.Windows.Forms.Button btnKhoiPhucNhanVien;
+        private System.Windows.Forms.Button btnrestar;
     }
 }

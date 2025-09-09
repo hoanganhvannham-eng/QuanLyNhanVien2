@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.btnKhoiPhucNhanVien = new System.Windows.Forms.Button();
-            this.btnNVDaNghiViec = new System.Windows.Forms.Button();
+            this.btnKhoiPhucPhongBanCu = new System.Windows.Forms.Button();
+            this.btnHienThiPhongBanCu = new System.Windows.Forms.Button();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
@@ -46,6 +46,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dataGridViewPhongBan = new System.Windows.Forms.DataGridView();
+            this.btnrestar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPhongBan)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,25 +60,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Phong Ban";
             // 
-            // btnKhoiPhucNhanVien
+            // btnKhoiPhucPhongBanCu
             // 
-            this.btnKhoiPhucNhanVien.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKhoiPhucNhanVien.Location = new System.Drawing.Point(959, 236);
-            this.btnKhoiPhucNhanVien.Name = "btnKhoiPhucNhanVien";
-            this.btnKhoiPhucNhanVien.Size = new System.Drawing.Size(256, 31);
-            this.btnKhoiPhucNhanVien.TabIndex = 56;
-            this.btnKhoiPhucNhanVien.Text = "Khoi Phuc Nhan Vien Da Nghi Viec";
-            this.btnKhoiPhucNhanVien.UseVisualStyleBackColor = true;
+            this.btnKhoiPhucPhongBanCu.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKhoiPhucPhongBanCu.Location = new System.Drawing.Point(959, 236);
+            this.btnKhoiPhucPhongBanCu.Name = "btnKhoiPhucPhongBanCu";
+            this.btnKhoiPhucPhongBanCu.Size = new System.Drawing.Size(256, 31);
+            this.btnKhoiPhucPhongBanCu.TabIndex = 56;
+            this.btnKhoiPhucPhongBanCu.Text = "Khoi Phuc Phong Ban";
+            this.btnKhoiPhucPhongBanCu.UseVisualStyleBackColor = true;
+            this.btnKhoiPhucPhongBanCu.Click += new System.EventHandler(this.btnKhoiPhucPhongBanCu_Click);
             // 
-            // btnNVDaNghiViec
+            // btnHienThiPhongBanCu
             // 
-            this.btnNVDaNghiViec.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNVDaNghiViec.Location = new System.Drawing.Point(959, 191);
-            this.btnNVDaNghiViec.Name = "btnNVDaNghiViec";
-            this.btnNVDaNghiViec.Size = new System.Drawing.Size(256, 31);
-            this.btnNVDaNghiViec.TabIndex = 55;
-            this.btnNVDaNghiViec.Text = "Hien Thi Nhan Vien Da Nghi Viec";
-            this.btnNVDaNghiViec.UseVisualStyleBackColor = true;
+            this.btnHienThiPhongBanCu.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHienThiPhongBanCu.Location = new System.Drawing.Point(959, 191);
+            this.btnHienThiPhongBanCu.Name = "btnHienThiPhongBanCu";
+            this.btnHienThiPhongBanCu.Size = new System.Drawing.Size(256, 31);
+            this.btnHienThiPhongBanCu.TabIndex = 55;
+            this.btnHienThiPhongBanCu.Text = "Hien Thi Phong Ban Cu";
+            this.btnHienThiPhongBanCu.UseVisualStyleBackColor = true;
+            this.btnHienThiPhongBanCu.Click += new System.EventHandler(this.btnHienThiPhongBanCu_Click);
             // 
             // btnTimKiem
             // 
@@ -88,6 +91,7 @@
             this.btnTimKiem.TabIndex = 53;
             this.btnTimKiem.Text = "Tim Kiem";
             this.btnTimKiem.UseVisualStyleBackColor = true;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // btnSua
             // 
@@ -226,14 +230,26 @@
             this.dataGridViewPhongBan.TabIndex = 57;
             this.dataGridViewPhongBan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPhongBan_CellClick);
             // 
+            // btnrestar
+            // 
+            this.btnrestar.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnrestar.Location = new System.Drawing.Point(1032, 97);
+            this.btnrestar.Name = "btnrestar";
+            this.btnrestar.Size = new System.Drawing.Size(108, 31);
+            this.btnrestar.TabIndex = 58;
+            this.btnrestar.Text = "Refresh";
+            this.btnrestar.UseVisualStyleBackColor = true;
+            this.btnrestar.Click += new System.EventHandler(this.btnrestar_Click);
+            // 
             // PhongBan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1377, 712);
+            this.Controls.Add(this.btnrestar);
             this.Controls.Add(this.dataGridViewPhongBan);
-            this.Controls.Add(this.btnKhoiPhucNhanVien);
-            this.Controls.Add(this.btnNVDaNghiViec);
+            this.Controls.Add(this.btnKhoiPhucPhongBanCu);
+            this.Controls.Add(this.btnHienThiPhongBanCu);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnXoa);
@@ -263,8 +279,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnKhoiPhucNhanVien;
-        private System.Windows.Forms.Button btnNVDaNghiViec;
+        private System.Windows.Forms.Button btnKhoiPhucPhongBanCu;
+        private System.Windows.Forms.Button btnHienThiPhongBanCu;
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnXoa;
@@ -280,5 +296,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dataGridViewPhongBan;
+        private System.Windows.Forms.Button btnrestar;
     }
 }

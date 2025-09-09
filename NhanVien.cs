@@ -383,5 +383,10 @@ namespace QuanLyNhanVien2
                 MessageBox.Show("loi " + ex.Message);
             }
         }
+
+        private void btnrestar_Click(object sender, EventArgs e)
+        {
+            LoadDataNhanVien();
+        }
     }
 }
