@@ -46,6 +46,7 @@ namespace QuanLyNhanVien2
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
                     dtGridViewNhanVien.DataSource = dt;
+                    ClearAllInputs(this);
                 }
                 catch (Exception ex)
                 {
@@ -54,9 +55,86 @@ namespace QuanLyNhanVien2
             }
         }
 
+
+        private void LoadcomboBox()
+        {
+            // load phong an combobxo
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(constr))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM tblPhongBan WHERE DeletedAt = 0", conn);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+
+                    cbBoxMaPB.DataSource = ds.Tables[0];
+                    cbBoxMaPB.DisplayMember = "MaPB";//Xác định cột nào của bảng dữ liệu sẽ được hiển thị lên ComboBox
+                    cbBoxMaPB.ValueMember = "MaPB"; // cot gia tri
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi load ma PB: " + ex.Message);
+            }
+            // load chuc vu combobox
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(constr))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM tblChucVu WHERE DeletedAt = 0", conn);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+
+                    cbBoxChucVu.DataSource = ds.Tables[0];
+                    cbBoxChucVu.DisplayMember = "TenCV";//Xác định cột nào của bảng dữ liệu sẽ được hiển thị lên ComboBox
+                    cbBoxChucVu.ValueMember = "MaCV"; // cot gia tri
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi load ma CV: " + ex.Message);
+            }
+        }
         private void NhanVien_Load(object sender, EventArgs e)
         {
             LoadDataNhanVien();
+            LoadcomboBox();
+            // load phong an combobxo
+            //try
+            //{
+            //    using (SqlConnection conn = new SqlConnection(constr))
+            //    {
+            //        SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM tblPhongBan WHERE DeletedAt = 0", conn);
+            //        DataSet ds = new DataSet();
+            //        da.Fill(ds);
+
+            //        cbBoxMaPB.DataSource = ds.Tables[0];
+            //        cbBoxMaPB.DisplayMember = "TenPB";//Xác định cột nào của bảng dữ liệu sẽ được hiển thị lên ComboBox
+            //        cbBoxMaPB.ValueMember = "MaPB"; // cot gia tri
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Lỗi load ma PB: " + ex.Message);
+            //}
+            //// load chuc vu combobox
+            //try
+            //{
+            //    using (SqlConnection conn = new SqlConnection(constr))
+            //    {
+            //        SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM tblChucVu WHERE DeletedAt = 0", conn);
+            //        DataSet ds = new DataSet();
+            //        da.Fill(ds);
+
+            //        cbBoxChucVu.DataSource = ds.Tables[0];
+            //        cbBoxChucVu.DisplayMember = "TenCV";//Xác định cột nào của bảng dữ liệu sẽ được hiển thị lên ComboBox
+            //        cbBoxChucVu.ValueMember = "MaCV"; // cot gia tri
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Lỗi load ma CV: " + ex.Message);
+            //}
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -77,16 +155,61 @@ namespace QuanLyNhanVien2
                     string.IsNullOrWhiteSpace(tbDiaChi.Text) ||
                     string.IsNullOrWhiteSpace(tbSoDienThoai.Text) ||
                     string.IsNullOrWhiteSpace(tbEmail.Text) ||
-                    string.IsNullOrWhiteSpace(tbMaPhongBan.Text) ||
-                    string.IsNullOrWhiteSpace(tbMaChucVu.Text))
+                    cbBoxChucVu.SelectedIndex == -1 ||
+                    cbBoxMaPB.SelectedIndex == -1)
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 using (SqlConnection conn = new SqlConnection(constr))
                 {
                     conn.Open();
+
+                    //  1. KIỂM TRA EMAIL ĐÃ TỒN TẠI CHƯA 
+                    string checkEmailSql = "SELECT COUNT(*) FROM tblNhanVien WHERE Email = @Email AND DeletedAt = 0";
+                    using (SqlCommand cmd = new SqlCommand(checkEmailSql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", tbEmail.Text.Trim());
+                        int emailCount = (int)cmd.ExecuteScalar();
+
+                        if (emailCount > 0)
+                        {
+                            MessageBox.Show("Email này đã tồn tại trong hệ thống!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // Dừng lại, không thêm nhân viên
+                        }
+                    }
+                    // check ma phong ban
+                    string checkMaPBSql = "SELECT COUNT(*) FROM tblPhongBan  WHERE MaPB  = @MaPB  AND DeletedAt = 0";
+                    using (SqlCommand cmd = new SqlCommand(checkMaPBSql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaPB ", cbBoxMaPB.SelectedValue);
+                        int MaPBCount = (int)cmd.ExecuteScalar();
+
+                        if (MaPBCount == 0)
+                        {
+                            MessageBox.Show("Mã phòng ban không tồn tại trong hệ thống!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // Dừng lại, không thêm nhân viên
+                        }
+                    }
+                    // check ma chuc vu
+                    string checkMaCVSql = "SELECT COUNT(*) FROM tblChucVu  WHERE MaCV  = @MaCV  AND DeletedAt = 0";
+                    using (SqlCommand cmd = new SqlCommand(checkMaCVSql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MaCV ", cbBoxChucVu.SelectedValue);
+                        int MaCVCount = (int)cmd.ExecuteScalar();
+
+                        if (MaCVCount == 0)
+                        {
+                            MessageBox.Show("Mã chức vụ không tồn tại trong hệ thống!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // Dừng lại, không thêm nhân viên
+                        }
+                    }
+
                     // Câu lệnh SQL chèn dữ liệu vào bảng tblNhanVien
                     string sql = @"INSERT INTO tblNhanVien 
                            ( HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email, MaPB, MaCV, GhiChu, DeletedAt)
@@ -101,8 +224,8 @@ namespace QuanLyNhanVien2
                         cmd.Parameters.AddWithValue("@DiaChi", tbDiaChi.Text.Trim());
                         cmd.Parameters.AddWithValue("@SoDienThoai", tbSoDienThoai.Text.Trim());
                         cmd.Parameters.AddWithValue("@Email", tbEmail.Text.Trim());
-                        cmd.Parameters.AddWithValue("@MaPB", tbMaPhongBan.Text.Trim());
-                        cmd.Parameters.AddWithValue("@MaCV", tbMaChucVu.Text.Trim());
+                        cmd.Parameters.AddWithValue("@MaPB", cbBoxMaPB.SelectedValue);
+                        cmd.Parameters.AddWithValue("@MaCV", cbBoxChucVu.SelectedValue);
                         cmd.Parameters.AddWithValue("@GhiChu", tbGhiChu.Text.Trim());
 
                         int rows = cmd.ExecuteNonQuery();
@@ -195,8 +318,8 @@ namespace QuanLyNhanVien2
                 tbDiaChi.Text = dtGridViewNhanVien.Rows[i].Cells[4].Value.ToString();
                 tbSoDienThoai.Text = dtGridViewNhanVien.Rows[i].Cells[5].Value.ToString();
                 tbEmail.Text = dtGridViewNhanVien.Rows[i].Cells[6].Value.ToString();
-                tbMaPhongBan.Text = dtGridViewNhanVien.Rows[i].Cells[7].Value.ToString();
-                tbMaChucVu.Text = dtGridViewNhanVien.Rows[i].Cells[8].Value.ToString();
+                cbBoxMaPB.SelectedValue = dtGridViewNhanVien.Rows[i].Cells[7].Value.ToString();
+                cbBoxChucVu.SelectedValue = dtGridViewNhanVien.Rows[i].Cells[8].Value.ToString();
                 tbGhiChu.Text = dtGridViewNhanVien.Rows[i].Cells[9].Value.ToString();
             }
         }
@@ -217,8 +340,8 @@ namespace QuanLyNhanVien2
                     string.IsNullOrWhiteSpace(tbDiaChi.Text) ||
                     string.IsNullOrWhiteSpace(tbSoDienThoai.Text) ||
                     string.IsNullOrWhiteSpace(tbEmail.Text) ||
-                    string.IsNullOrWhiteSpace(tbMaPhongBan.Text) ||
-                    string.IsNullOrWhiteSpace(tbMaChucVu.Text))
+                    cbBoxChucVu.SelectedIndex == -1 ||
+                    cbBoxMaPB.SelectedIndex == -1)
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -249,8 +372,8 @@ namespace QuanLyNhanVien2
                         cmd.Parameters.AddWithValue("@DiaChi", tbDiaChi.Text.Trim());
                         cmd.Parameters.AddWithValue("@SoDienThoai", tbSoDienThoai.Text.Trim());
                         cmd.Parameters.AddWithValue("@Email", tbEmail.Text.Trim());
-                        cmd.Parameters.AddWithValue("@MaPB", tbMaPhongBan.Text.Trim());
-                        cmd.Parameters.AddWithValue("@MaCV", tbMaChucVu.Text.Trim());
+                        cmd.Parameters.AddWithValue("@MaPB", cbBoxMaPB.SelectedItem);
+                        cmd.Parameters.AddWithValue("@MaCV", cbBoxChucVu.SelectedItem);
                         cmd.Parameters.AddWithValue("@GhiChu", tbGhiChu.Text.Trim());
 
                         int rows = cmd.ExecuteNonQuery();
@@ -387,6 +510,8 @@ namespace QuanLyNhanVien2
         private void btnrestar_Click(object sender, EventArgs e)
         {
             LoadDataNhanVien();
+            LoadcomboBox();
         }
+
     }
 }

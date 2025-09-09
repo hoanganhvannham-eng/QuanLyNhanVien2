@@ -75,10 +75,24 @@ namespace QuanLyNhanVien2
                 using (SqlConnection conn = new SqlConnection(constr))
                 {
                     conn.Open();
-                    // Câu lệnh SQL chèn dữ liệu vào bảng tblNhanVien
+                    // ktra ten pong ban
+                    string checkMaPBSql = "SELECT COUNT(*) FROM tblPhongBan  WHERE TenPB  = @TenPB AND DiaChi  = @DiaChi";
+                    using (SqlCommand cmd = new SqlCommand(checkMaPBSql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@TenPB", tbTenPB.Text.Trim());
+                        cmd.Parameters.AddWithValue("@DiaChi", tbDiaChi.Text.Trim());
+                        int MaPBCount = (int)cmd.ExecuteScalar();
+
+                        if (MaPBCount > 0)
+                        {
+                            MessageBox.Show("phòng ban nay da tồn tại trong hệ thống!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // Dừng lại, không thêm nhân viên
+                        }
+                    }
+
                     string sql = @"INSERT INTO tblPhongBan 
                            ( TenPB, DiaChi, SoDienThoai, Ghichu, DeletedAt) VALUES ( @TenPB, @DiaChi, @SoDienThoai, @Ghichu, 0)";
-
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         // Gán giá trị từ các ô nhập liệu vào tham số SQL

@@ -171,11 +171,11 @@ SELECT * FROM TaiKhoan WHERE DeletedAt = 0;
 UPDATE TaiKhoan SET DeletedAt = NULL WHERE MaNV = 7;	-- khôi phục
 SELECT * FROM TaiKhoan WHERE DeletedAt = 0;
 
-INSERT INTO tblPhongBan (TenPB, DiaChi, SoDienThoai, Ghichu)
+INSERT INTO tblPhongBan (TenPB, DiaChi, SoDienThoai, Ghichu, DeletedAt)
 VALUES
-(N'Phòng Hành Chính', N'Hà Nội', '0241234567', N'Quản lý nhân sự & hành chính'),
-(N'Phòng Kỹ Thuật', N'Hồ Chí Minh', '0287654321', N'Phát triển & bảo trì hệ thống'),
-(N'Phòng Kinh Doanh', N'Đà Nẵng', '0236789123', N'Tìm kiếm khách hàng và bán hàng');
+(N'Phòng Hành Chính', N'Hà Nội', '0241234567', N'Quản lý nhân sự & hành chính', '0');
+(N'Phòng Kỹ Thuật', N'Hồ Chí Minh', '0287654321', N'Phát triển & bảo trì hệ thống' ,0),
+(N'Phòng Kinh Doanh', N'Đà Nẵng', '0236789123', N'Tìm kiếm khách hàng và bán hàng', 0);
 
 INSERT INTO tblChucVu (TenCV, Ghichu)
 VALUES
