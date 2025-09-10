@@ -104,6 +104,7 @@
             this.tbpassword.Location = new System.Drawing.Point(260, 194);
             this.tbpassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbpassword.Name = "tbpassword";
+            this.tbpassword.PasswordChar = '*';
             this.tbpassword.Size = new System.Drawing.Size(390, 30);
             this.tbpassword.TabIndex = 8;
             // 
