@@ -42,6 +42,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(119, 194);
             this.label3.Name = "label3";
@@ -52,6 +53,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(119, 144);
             this.label2.Name = "label2";
@@ -76,7 +78,7 @@
             this.btnthoat.Location = new System.Drawing.Point(504, 304);
             this.btnthoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnthoat.Name = "btnthoat";
-            this.btnthoat.Size = new System.Drawing.Size(100, 39);
+            this.btnthoat.Size = new System.Drawing.Size(98, 38);
             this.btnthoat.TabIndex = 10;
             this.btnthoat.Text = "Thoát";
             this.btnthoat.UseVisualStyleBackColor = true;
@@ -84,14 +86,15 @@
             // 
             // btndangnhap
             // 
+            this.btndangnhap.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btndangnhap.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndangnhap.Location = new System.Drawing.Point(260, 304);
             this.btndangnhap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btndangnhap.Name = "btndangnhap";
-            this.btndangnhap.Size = new System.Drawing.Size(107, 39);
+            this.btndangnhap.Size = new System.Drawing.Size(121, 38);
             this.btndangnhap.TabIndex = 9;
             this.btndangnhap.Text = "Đăng Nhập";
-            this.btndangnhap.UseVisualStyleBackColor = true;
+            this.btndangnhap.UseVisualStyleBackColor = false;
             this.btndangnhap.Click += new System.EventHandler(this.btndangnhap_Click);
             // 
             // tbpassword
@@ -141,6 +144,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::QuanLyNhanVien2.Properties.Resources.lovepik_science_and_technology_background_of_digital_image_500463355;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.checkshowpassword);
             this.Controls.Add(this.linkLabel1);

@@ -51,8 +51,8 @@ namespace QuanLyNhanVien2
             {
                 try
                 {
-                    conn.Open();
-                    string query = "SELECT COUNT(*) FROM tblTaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
+                        conn.Open();
+                        string query = "SELECT COUNT(*) FROM tblTaiKhoan WHERE TenDangNhap = @username AND MatKhau = @password";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
