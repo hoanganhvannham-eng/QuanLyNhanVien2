@@ -16,7 +16,11 @@ namespace QuanLyNhanVien2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            DangNhap loginForm = new DangNhap();
+            if (loginForm.ShowDialog() == DialogResult.OK) // Nếu đăng nhập thành công
+            {
+                Application.Run(new Form1());
+            }
         }
     }
 }

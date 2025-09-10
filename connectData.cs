@@ -8,6 +8,5 @@ namespace QuanLyNhanVien2
 {
     class connectData
     {
-        public
     }
 }

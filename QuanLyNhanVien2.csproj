@@ -65,6 +65,12 @@
       <DependentUpon>ChucVu.cs</DependentUpon>
     </Compile>
     <Compile Include="connectData.cs" />
+    <Compile Include="DangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DangNhap.Designer.cs">
+      <DependentUpon>DangNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="DuAn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChucVu.resx">
       <DependentUpon>ChucVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DangNhap.resx">
+      <DependentUpon>DangNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DuAn.resx">
       <DependentUpon>DuAn.cs</DependentUpon>
