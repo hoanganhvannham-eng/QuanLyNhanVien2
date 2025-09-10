@@ -64,6 +64,7 @@
     <Compile Include="ChucVu.Designer.cs">
       <DependentUpon>ChucVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="connectData.cs" />
     <Compile Include="DuAn.cs">
       <SubType>Form</SubType>
     </Compile>
